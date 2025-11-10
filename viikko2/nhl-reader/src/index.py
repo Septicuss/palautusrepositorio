@@ -7,6 +7,19 @@ from player import PlayerStats
 
 console = Console()
 
+def build_table(players, season, nationality):
+    table = Table(title=f"Season {season} players from {nationality}")
+    table.add_column("Released", style="cyan")
+    table.add_column("teams", style="magenta")
+    table.add_column("goals", style="green", justify="right")
+    table.add_column("assists", style="green", justify="right")
+    table.add_column("points", style="green", justify="right")
+
+    for player in players[:12]:
+        table.add_row(player.name, player.team, str(player.goals), str(player.assists), str(player.score()))
+
+    return table
+
 def main():
     seasons = ["2018-19", "2019-20", "2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"]
     season = Prompt.ask(prompt="Season", choices=seasons, default="2024-25")
@@ -21,21 +34,7 @@ def main():
             continue
 
         players = stats.top_scorers_by_nationality(nationality)
-
-        table = Table(title=f"Season {season} players from {nationality}")
-        table.add_column("Released", style="cyan")
-        table.add_column("teams", style="magenta")
-        table.add_column("goals", style="green", justify="right")
-        table.add_column("assists", style="green", justify="right")
-        table.add_column("points", style="green", justify="right")
-
-        amount = 1
-        for player in players:
-            table.add_row(player.name, player.team, str(player.goals), str(player.assists), str(player.score()))
-            if amount >= 12: break
-            else: amount += 1
-
-        console.print(table)
+        console.print(build_table(players, season, nationality))
 
 if __name__ == "__main__":
     main()
