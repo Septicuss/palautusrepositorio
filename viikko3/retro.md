@@ -1,0 +1,7 @@
+## Retrospektiivitekniikat
+
+### Start, Stop, Continue, More of, Less of Wheel
+Kyseessä on eräs retrospektiivin tekniikka, joka perustuu kommenttien kategorisointiin. Organisoija tarvitsee markerin ja jonkinlaisen taulun merkintöjen ja kommenttien kirjoittamiseen ylös. Piirretään taululle ympyrä, jota jaetaan viiteen kategoriaan: "Start", "Stop", "Continue", "More of", "Less of". Tämän jälkeen, kysy, mitä meidän pitäisi projektin puitteissa "Start" - aloittaa tekemään, "Stop" - lopettaa jokin asian tekemisen, "Continue" - jatkaa tietyllä tavalla, "More of" - lisää jotakin asiaa prosessissa ja "Less of" - eli vähemmän jotakin. Organisoija kerää osallistujilta kommentteja eri ympyrän osa-alueisiin, jotka liittyvät alueen kategoriaan. Eräs esimerkki "Start" -kategorian kommentista voisi olla "Testaustyökalujen käyttö". Kesto noin 10-25min.
+
+### Glad, Sad, Mad
+Kyseessä on retrospektiivitekniikka, jossa tavoitteena on kerätä sprintin aikaisia havaintoja. Osallistujat kirjoittavat lyhyitä huomioita edellisestä sprintistä korteille. Nämä huomiot käydään vuorotellen läpi ja kortit asetetaan taululle kolmeen kategoriaan sen mukaan, tuntuuko havainto tunteelta "Glad", "Sad" vai "Mad". Kategories auttavat erottamaan positiiviset ja negatiiviset havainnot. Kortteja voidaan ryhmitellä, jos ne kuvaavat samaa asiaa. Tämän jälkeen osallistujat äänestävät, mitkä aiheet käsitellään tarkemmin, ja keskustelu käydään eniten ääniä saaneista alkaen. Kesto jopa 60min.
