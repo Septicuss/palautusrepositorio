@@ -18,9 +18,6 @@ Click Register Link
 Go To Starting Page
   Go To  ${HOME_URL}
 
-Register Page Should Be Open
-  Title Should Be  Register
-
 Reset Application And Go To Starting Page
   Reset Application
   Go To Starting Page
