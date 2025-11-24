@@ -85,6 +85,7 @@ class TestKauppa(unittest.TestCase):
         tuote = self.varasto_mock.hae_tuote(1)
         self.kauppa.aloita_asiointi()
         self.kauppa._ostoskori = self.ostoskori_mock
+        
         self.kauppa.lisaa_koriin(1)
         self.kauppa.poista_korista(1)
         self.varasto_mock.palauta_varastoon.assert_called_with(tuote)
