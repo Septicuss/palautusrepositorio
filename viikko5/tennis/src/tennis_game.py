@@ -18,9 +18,6 @@ class TennisPlayer:
     def add_point(self):
         self.points += 1
 
-    def get_call(self):
-        return CALLS.get(self.points)
-
     def is_beyond_deuce(self):
         return self.points > DEUCE_MIN_POINTS
 
@@ -50,7 +47,7 @@ class TennisGame:
 
         return f"{call}-All"
 
-    def get_score_beyond_deuce(self) -> str | None:
+    def get_score_beyond_deuce(self) -> str:
         leader = self.first_player if self.first_player.points > self.second_player.points else self.second_player
         difference = abs(self.first_player.points - self.second_player.points)
 
