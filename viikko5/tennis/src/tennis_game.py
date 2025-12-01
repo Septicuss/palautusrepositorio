@@ -1,55 +1,74 @@
+
+CALLS = {
+    0: "Love",
+    1: "Fifteen",
+    2: "Thirty",
+    3: "Forty"
+}
+
+DEUCE = "Deuce"
+DEUCE_MIN_POINTS = 3
+
+
+class TennisPlayer:
+    def __init__(self, name: str):
+        self.name = name
+        self.points = 0
+
+    def add_point(self):
+        self.points += 1
+
+    def is_beyond_deuce(self):
+        return self.points > DEUCE_MIN_POINTS
+
 class TennisGame:
     def __init__(self, player1_name, player2_name):
-        self.player1_name = player1_name
-        self.player2_name = player2_name
-        self.m_score1 = 0
-        self.m_score2 = 0
+        self.first_player = TennisPlayer(player1_name)
+        self.second_player = TennisPlayer(player2_name)
+
+    def get_player(self, player_name) -> TennisPlayer | None:
+        if self.first_player.name == player_name:
+            return self.first_player
+        elif self.second_player.name == player_name:
+            return self.second_player
+        return None
 
     def won_point(self, player_name):
-        if player_name == "player1":
-            self.m_score1 = self.m_score1 + 1
-        else:
-            self.m_score2 = self.m_score2 + 1
+        player = self.get_player(player_name)
+        if player is not None:
+            player.add_point()
+
+    def get_score_equal_points(self) -> str:
+        points = self.first_player.points
+        call = CALLS.get(points)
+
+        if points == DEUCE_MIN_POINTS or not call:
+            return DEUCE
+
+        return f"{call}-All"
+
+    def get_score_beyond_deuce(self) -> str:
+        leader = self.first_player if self.first_player.points > self.second_player.points else self.second_player
+        difference = abs(self.first_player.points - self.second_player.points)
+
+        if difference == 1:
+            return f"Advantage {leader.name}"
+
+        return f"Win for {leader.name}"
 
     def get_score(self):
-        score = ""
-        temp_score = 0
 
-        if self.m_score1 == self.m_score2:
-            if self.m_score1 == 0:
-                score = "Love-All"
-            elif self.m_score1 == 1:
-                score = "Fifteen-All"
-            elif self.m_score1 == 2:
-                score = "Thirty-All"
-            else:
-                score = "Deuce"
-        elif self.m_score1 >= 4 or self.m_score2 >= 4:
-            minus_result = self.m_score1 - self. m_score2
+        # Equal points
+        if self.first_player.points == self.second_player.points:
+            return self.get_score_equal_points()
 
-            if minus_result == 1:
-                score = "Advantage player1"
-            elif minus_result == -1:
-                score = "Advantage player2"
-            elif minus_result >= 2:
-                score = "Win for player1"
-            else:
-                score = "Win for player2"
-        else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.m_score1
-                else:
-                    score = score + "-"
-                    temp_score = self.m_score2
+        # Beyond a deuce
+        if self.first_player.is_beyond_deuce() or self.second_player.is_beyond_deuce():
+            return self.get_score_beyond_deuce()
 
-                if temp_score == 0:
-                    score = score + "Love"
-                elif temp_score == 1:
-                    score = score + "Fifteen"
-                elif temp_score == 2:
-                    score = score + "Thirty"
-                elif temp_score == 3:
-                    score = score + "Forty"
+        # Unequal points, not beyond a deuce
+        first_score = CALLS.get(self.first_player.points)
+        second_score = CALLS.get(self.second_player.points)
 
-        return score
+        return f"{first_score}-{second_score}"
+
