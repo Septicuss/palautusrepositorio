@@ -17,13 +17,33 @@ class PlaysIn:
     def test(self, player):
         return player.team == self._team
 
-
-class HasAtLeast:
+class Compare:
     def __init__(self, value, attr):
         self._value = value
         self._attr = attr
 
+class HasAtLeast(Compare):
     def test(self, player):
         player_value = getattr(player, self._attr)
 
         return player_value >= self._value
+
+class All:
+    def __init__(self):
+        pass
+
+    def test(self, player):
+        return True
+
+class Not:
+    def __init__(self, matcher):
+        self._matcher = matcher
+
+    def test(self, player):
+        return not self._matcher.test(player)
+
+class HasFewerThan(Compare):
+    def test(self, player):
+        player_value = getattr(player, self._attr)
+
+        return player_value < self._value
