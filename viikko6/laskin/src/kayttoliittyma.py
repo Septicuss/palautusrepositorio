@@ -68,8 +68,12 @@ class Kayttoliittyma:
             return 0
 
     def _suorita_komento(self, komento):
+        arvo_ennen = self._sovelluslogiikka.arvo()
+
         komento = self._komennot[komento]
         komento.suorita()
+
+        self._sovelluslogiikka.historia(komento, arvo_ennen)
 
         self._kumoa_painike["state"] = constants.NORMAL
 
