@@ -12,7 +12,7 @@ def main():
         vastaus = input()
         peli = luo_peli(vastaus)
 
-        if luo_peli(vastaus) is not None:
+        if peli is not None:
             print("Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s")
             peli.pelaa()
             continue
